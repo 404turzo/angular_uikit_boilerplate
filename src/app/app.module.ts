@@ -1,14 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
-import { AppRoutingModule } from './app.route';
-import { AppComponent } from './app.component';
+import { AppRoutes } from './app.route';
 
 // layouts
+import { PublicLayout } from "./layouts/public.layout";
+import { AdminLayout } from "./layouts/admin.layout";
 
-// routes
+//Guard
+import { AuthGuard } from './app.authguard'; 
+
 
 // components
+import { AppComponent } from './app.component';
 
 // common
 import { NotFound } from './components/common/notfound/notfound';
@@ -24,9 +30,15 @@ import { Navbar } from './components/admin/navbar/navbar';
 
 // admin - shared components
 
+
+// services
+import { UserService } from './services/user.service'; 
+
 @NgModule({
   declarations: [
     AppComponent,
+    AdminLayout, 
+    PublicLayout, 
     NotFound,
     Home, Login, PublicNavbar,
     Dashboard, Navbar
@@ -34,11 +46,14 @@ import { Navbar } from './components/admin/navbar/navbar';
 
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    RouterModule,
+    AppRoutes
   ],
 
   providers: [
-    
+    AuthGuard,
+    UserService
   ],
   
   bootstrap: [AppComponent]

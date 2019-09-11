@@ -11,14 +11,14 @@ import { AdminLayout } from "./layouts/admin.layout";
 
  
 //Guard
-import { AuthGuard } from './app.authguard';
+import { AuthGuard } from './auth.guard';
 
 const APP_ROUTE: Routes = [
 	
-	{ path: '', redirectTo: '/dashboard', pathMatch: 'full', },
+	{ path: '', redirectTo: '/dashboard'},
 	{ path: '', component: PublicLayout, data: { title: 'Public Views' }, children: PublicRoutes },
 	{ path: '', component: AdminLayout, canActivate:[AuthGuard], data: { title: 'Secure Views' }, children: AdminRoutes },
-	{ path: '**', redirectTo: 'notfound', pathMatch: 'full', },
+	{ path: '**', redirectTo: '/notfound'},
 
 ];
 
